@@ -23,24 +23,28 @@ class avamar::params {
         /(4|5)/: {
           case $::architecture {
             'x86_64': {
-              $pkg     = "${base}-linux-rhel4-x86_64-${version}.${type}"
-              $pkg_loc = "/DPNInstalls/downloads/RHEL5-X86_64/${pkg}"
+              $pkg_name = "${base}-${version}.x86_64"
+              $pkg      = "${base}-linux-rhel4-x86_64-${version}.${type}"
+              $pkg_loc  = "/DPNInstalls/downloads/RHEL5-X86_64/${pkg}"
             }
             'i386': {
-              $pkg     = "${base}-linux-rhel4-x86-${version}.${type}"
-              $pkg_loc = "/DPNInstalls/downloads/RHEL5/${pkg}"
+              $pkg_name = "${base}-${version}.i386"
+              $pkg      = "${base}-linux-rhel4-x86-${version}.${type}"
+              $pkg_loc  = "/DPNInstalls/downloads/RHEL5/${pkg}"
             }
           }
         }
         '6': {
           case $::architecture {
             'x86_64': {
-              $pkg     = "${base}-linux-sles11-x86_64-${version}.${type}"
-              $pkg_loc = "/DPNInstalls/downloads/RHEL6-X86_64/${pkg}"
+              $pkg_name = "${base}-${version}.x86_64"
+              $pkg      = "${base}-linux-sles11-x86_64-${version}.${type}"
+              $pkg_loc  = "/DPNInstalls/downloads/RHEL6-X86_64/${pkg}"
             }
             'i386': {
-              $pkg     = "${base}-linux-sles11-x86-${version}.${type}"
-              $pkg_loc = "/DPNInstalls/downloads/RHEL6/${pkg}"
+              $pkg_name = "${base}-${version}.i386"
+              $pkg      = "${base}-linux-sles11-x86-${version}.${type}"
+              $pkg_loc  = "/DPNInstalls/downloads/RHEL6/${pkg}"
             }
           }
         }
@@ -51,12 +55,14 @@ class avamar::params {
       $type     = 'rpm'
       case $::architecture {
         'x86_64': {
-          $pkg     = "${base}-linux-sles11-x86_64-${version}.${type}"
-          $pkg_loc = "/DPNInstalls/downloads/SLES11-X86_64/${pkg}"
+          $pkg_name = "${base}-${version}.x86_64"
+          $pkg      = "${base}-linux-sles11-x86_64-${version}.${type}"
+          $pkg_loc  = "/DPNInstalls/downloads/SLES11-X86_64/${pkg}"
         }
         'i386': {
-          $pkg     = "${base}-linux-sles11-x86-${version}.${type}"
-          $pkg_loc = "/DPNInstalls/downloads/SLES11/${pkg}"
+          $pkg_name = "${base}-${version}.i386"
+          $pkg      = "${base}-linux-sles11-x86-${version}.${type}"
+          $pkg_loc  = "/DPNInstalls/downloads/SLES11/${pkg}"
         }
       }
     }
@@ -65,12 +71,12 @@ class avamar::params {
       $type     = 'pkg'
       case $::architecture {
         'x86_64': {
-          $pkg     = "${base}-solaris10-x86_64-${version}.${type}"
-          $pkg_loc = "/DPNInstalls/downloads/SOL5.10_X86_64/${pkg}"
+          $pkg      = "${base}-solaris10-x86_64-${version}.${type}"
+          $pkg_loc  = "/DPNInstalls/downloads/SOL5.10_X86_64/${pkg}"
         }
         'i386': {
-          $pkg = "${base}-solaris10-x86-${version}.${type}"
-          $pkg_loc = "/DPNInstalls/downloads/SOL5.10_X86/${pkg}"
+          $pkg      = "${base}-solaris10-x86-${version}.${type}"
+          $pkg_loc  = "/DPNInstalls/downloads/SOL5.10_X86/${pkg}"
         }
       }
     }
