@@ -14,7 +14,7 @@ This module is used to deploy the Avamar Client to puppet nodes. Currently I hav
 
 ## Requirements
 * [puppetlabs-stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib) (v4.1.0)
-* [maestrodev-wget](https://forge.puppetlabs.com/maestrodev/wget) (v1.1.0)
+* [maestrodev-wget](https://github.com/maestrodev/puppet-wget) (master)
 
 ## Tested On
 * Puppet 3.1.1
@@ -29,8 +29,9 @@ This module is used to deploy the Avamar Client to puppet nodes. Currently I hav
 ```
 node foo.domain.tld {
   class { avamar:
-    avamar_host   => 'avamar.domain.tld',
-    avamar_domain => 'clients',
+    avamar_host        => 'avamar.domain.tld',
+    avamar_domain      => 'clients',
+    nocheckcertificate => true,
   }
 }
 ```

@@ -21,12 +21,12 @@ class avamar::install inherits avamar::params {
   validate_string($host)
 
   wget::fetch { "avamar_pkg":
-    source      => "$pkg_url",
-    destination => "${pkg_dir}/${pkg}",
-    timeout     => 0,
-    verbose     => false,
-    checkssl    => false,
-    notify      => Package[$pkg_name],
+    source             => "$pkg_url",
+    destination        => "${pkg_dir}/${pkg}",
+    timeout            => 0,
+    verbose            => false,
+    nocheckcertificate => true,
+    notify             => Package[$pkg_name],
   }
 
   package { $pkg_name:
