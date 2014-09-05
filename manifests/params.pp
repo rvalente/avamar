@@ -10,10 +10,11 @@
 # Copyright 2103 Ronald Valente
 #
 class avamar::params {
-  $pkg_dir = '/usr/local/src'
-  $avagent = '/usr/local/avamar/etc/avagent.d'
-  $version = '6.1.100-402'
-  $base    = 'AvamarClient'
+  $pkg_dir   = '/usr/local/src'
+  $avagent   = '/usr/local/avamar/etc/avagent.d'
+  $version   = '6.1.100-402'
+  $base      = 'AvamarClient'
+  $local_dir = ''
 
   case $::osfamily {
     RedHat: {
@@ -98,14 +99,22 @@ class avamar::params {
     Windows: {
       $provider = 'windows'
       $type     = 'msi'
+      $pkg_name = "EMC Avamar for Windows"
       case $::architecture {
         'amd64': {
-          $pkg     = "${base}-windows-x86_64-${version}.${type}"
-          $pkg_loc = "/DPNInstalls/downloads/WIN64/${pkg}"
+          $pkg      = "${base}-windows-x86_64-${version}.${type}"
+          $pkg_loc  = "/DPNInstalls/downloads/WIN64/${pkg}"
+          $pkg_path = "C:\\Program Files\\avs\\bin\\"
+        }
+        'x64': {
+          $pkg      = "${base}-windows-x86_64-${version}.${type}"
+          $pkg_loc  = "/DPNInstalls/downloads/WIN64/${pkg}"
+          $pkg_path = "C:\\Program Files\\avs\\bin\\"
         }
         'x86': {
           $pkg     = "${base}-windows-x86-${version}.${type}"
           $pkg_loc = "/DPNInstalls/downloads/WIN32/${pkg}"
+          $pkg_path = "C:\\Program Files (x86)\\avs\\bin\\"
         }
       }
     }

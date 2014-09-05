@@ -12,6 +12,7 @@
 class avamar (
   $avamar_host   = undef,
   $avamar_domain = 'clients',
+  $local_dir     = '',
 ) inherits avamar::params {
   include avamar::install, avamar::register
 }
