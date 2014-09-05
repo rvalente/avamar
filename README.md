@@ -19,17 +19,17 @@ Tested on windows server 2012 R2
 
 ## Requirements
 * [puppetlabs-stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib) (v4.1.0)
-if linux :
-* [maestrodev-wget](https://github.com/maestrodev/puppet-wget) (master)
-if windows :
-* [puppetlabs-stdlib](https://forge.puppetlabs.com/puppetlabs/powershell) (v1.0.3)
+* if linux :
+ - [maestrodev-wget](https://github.com/maestrodev/puppet-wget) (master)
+* if windows :
+ - [puppetlabs-stdlib](https://forge.puppetlabs.com/puppetlabs/powershell) (v1.0.3)
 
 ## Tested On
 * Puppet 3.1.1
 * Facter 1.7.1
 * EMC Avamar 6.1
 
-* Puppet 3.6.2012
+* Puppet 3.6.2
 * EMC Avamar 6.12
 * Windows Server 2012 R2
 
