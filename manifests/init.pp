@@ -15,4 +15,5 @@ class avamar (
   $local_dir     = '',
 ) inherits avamar::params {
   include avamar::install, avamar::register
+  anchor{'avamar::begin':} -> Class['avamar::install'] -> Class['avamar::register'] -> anchor{'avamar::end':}
 }
