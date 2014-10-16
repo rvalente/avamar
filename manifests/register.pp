@@ -1,6 +1,6 @@
 # == Class: avamar::register
 # This will register the client with the Avamar Grid.
-# This requires that a host and a domain be provided via the avamar class.
+# This requires that a host and a domain be provided.
 #
 # === Authors
 # Ronald Valente <rawn027@gmail.com>
@@ -9,15 +9,12 @@
 # Copyright 2103 Ronald Valente
 #
 class avamar::register inherits avamar::params {
-  include avamar
-
-  $host   = $avamar::avamar_host
-  $domain = $avamar::avamar_domain
 
   case $::osfamily {
     Windows: {
       exec { 'register':
         command     => "cd \"${pkg_path}\"; .\\avregister.bat \"${host}\" \"${domain}\";",
+        # TODO: check if we can use cwd => "${pkg_path}"
         refreshonly => true,
         subscribe   => Class['avamar::install'],
         provider    => "powershell",
@@ -33,6 +30,7 @@ class avamar::register inherits avamar::params {
     default: {
       exec { 'register':
         command     => "$avagent register $host $domain",
+        path        => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin", "/usr/local/sbin" ],
         onlyif      => "test `$avagent status | grep -c $host` -ne 1",
         refreshonly => true,
         subscribe   => Class['avamar::install'],

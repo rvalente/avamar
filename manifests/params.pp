@@ -10,11 +10,15 @@
 # Copyright 2103 Ronald Valente
 #
 class avamar::params {
-  $pkg_dir   = '/usr/local/src'
-  $avagent   = '/usr/local/avamar/etc/avagent.d'
-  $version   = '6.1.100-402'
-  $base      = 'AvamarClient'
-  $local_dir = ''
+  
+  $host       = undef
+  $domain     = 'clients'
+  $version    = '6.1.100-402'
+  $pkg_dir    = '/usr/local/src'
+  $avagent    = '/usr/local/avamar/etc/avagent.d'
+  $base       = 'AvamarClient'
+  $local_dir  = ''
+
 
   case $::osfamily {
     RedHat: {

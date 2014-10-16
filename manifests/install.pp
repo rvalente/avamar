@@ -1,6 +1,5 @@
 # == Class: avamar::install
 # This will install the latest avamar client package.
-# This class will use the avamar_host param from the main Avamar class.
 #
 # === Authors
 # Ronald Valente <rawn027@gmail.com>
@@ -9,12 +8,8 @@
 # Copyright 2103 Ronald Valente
 #
 class avamar::install inherits avamar::params {
-  include avamar
 
-  # Build the base_url
-  $host      = $avamar::avamar_host
-
-  if($avamar::local_dir == ''){
+  if($local_dir == ''){
     include wget
     $base_url  = "https://${host}"
     $pkg_url   = "${base_url}${pkg_loc}"
