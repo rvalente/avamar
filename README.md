@@ -44,6 +44,8 @@ Currently it has only been tested on:
 
 ## Usage
 
+### Without Hiera
+
 ```
 node foo.domain.tld {
   class { avamar:
@@ -63,3 +65,21 @@ On Windows :
   }
 
 ```
+
+### With Hiera
+
+Puppet:
+```
+node foo.domain.tld {
+  include avamar
+}
+```
+
+Hiera/YAML:
+```
+avamar::host: 'exosafe.exoscale.ch'avamar::host: 'avamar.domain.tld'
+avamar::domain: 'clients'
+avamar::version: '7.1.100-370'
+```
+
+

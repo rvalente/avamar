@@ -14,7 +14,6 @@ class avamar::register inherits avamar::params {
     Windows: {
       exec { 'register':
         command     => "cd \"${avamar::params::pkg_path}\"; .\\avregister.bat \"${avamar::params::host}\" \"${avamar::params::domain}\";",
-        # TODO: check if we can use cwd => "${pkg_path}"
         refreshonly => true,
         subscribe   => Class['avamar::install'],
         provider    => "powershell",

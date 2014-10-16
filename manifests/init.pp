@@ -25,6 +25,4 @@ class avamar (
   } -> 
   class {'avamar::register':
   }
-  
-  
 }

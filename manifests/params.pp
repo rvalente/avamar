@@ -16,11 +16,9 @@ class avamar::params (
   $local_dir,
 ) {
   
-
   $pkg_dir    = '/usr/local/src'
   $avagent    = '/usr/local/avamar/etc/avagent.d'
   $base       = 'AvamarClient'
-
 
   case $::osfamily {
     RedHat: {
@@ -60,17 +58,35 @@ class avamar::params (
     Suse: {
       $provider = 'rpm'
       $type     = 'rpm'
-      case $::architecture {
-        'x86_64': {
-          $pkg_name = "${base}-${version}.x86_64"
-          $pkg      = "${base}-linux-sles11-x86_64-${version}.${type}"
-          $pkg_loc  = "/DPNInstalls/downloads/SLES11-X86_64/${pkg}"
+      case $::lsbmajdistrelease {
+        '10':{
+          case $::architecture {
+            'x86_64': {
+              $pkg_name = "${base}-${version}.x86_64"
+              $pkg      = "${base}-linux-rhel4-x86_64-${version}.${type}"
+              $pkg_loc  = "/DPNInstalls/downloads/SLES10-X86_64/${pkg}"
+            }
+            'i386': {
+              $pkg_name = "${base}-${version}.i386"
+              $pkg      = "${base}-linux-rhel4-x86-${version}.${type}"
+              $pkg_loc  = "/DPNInstalls/downloads/SLES10/${pkg}"
+            }
+          }
         }
-        'i386': {
-          $pkg_name = "${base}-${version}.i386"
-          $pkg      = "${base}-linux-sles11-x86-${version}.${type}"
-          $pkg_loc  = "/DPNInstalls/downloads/SLES11/${pkg}"
-        }
+        '11':{          
+          case $::architecture {
+            'x86_64': {
+              $pkg_name = "${base}-${version}.x86_64"
+              $pkg      = "${base}-linux-sles11-x86_64-${version}.${type}"
+              $pkg_loc  = "/DPNInstalls/downloads/SLES11-X86_64/${pkg}"
+            }
+            'i386': {
+              $pkg_name = "${base}-${version}.i386"
+              $pkg      = "${base}-linux-sles11-x86-${version}.${type}"
+              $pkg_loc  = "/DPNInstalls/downloads/SLES11/${pkg}"
+            }
+          }
+        }         
       }
     }
     Solaris: {
