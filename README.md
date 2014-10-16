@@ -31,16 +31,23 @@ Currently it has only been tested on:
 * Puppet 3.1.1
 * Facter 1.7.1
 * EMC Avamar 6.1
+* Ubuntu 12.04
 
 * Puppet 3.6.2
+* Facter 1.7.5
 * EMC Avamar 6.12
 * Windows Server 2012 R2
+
+* Puppet 3.6.2 & 3.7.1
+* Facter 1.7.5 & 2.2.0
+* EMC Avamar 7.1
+* Ubuntu 14.04
 
 ## Params
 * **host** is mandatory
 * **domain** defaults to "clients"
-* **version** defaults to '6.1.100-402'
-* **local_dir**     ## full path of the installer (only tested on windows !!)
+* **version** defaults to '6.1.100-402', should be the version of the Avamar agent you're using
+* **local_dir** defaults to ''. if used, it should be the full path of the installer (only tested on windows !!)
 
 ## Usage
 
@@ -77,7 +84,7 @@ node foo.domain.tld {
 
 Hiera/YAML:
 ```
-avamar::host: 'exosafe.exoscale.ch'avamar::host: 'avamar.domain.tld'
+avamar::host: 'avamar.domain.tld'
 avamar::domain: 'clients'
 avamar::version: '7.1.100-370'
 ```
