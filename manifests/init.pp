@@ -10,14 +10,21 @@
 # Copyright 2103 Ronald Valente
 #
 class avamar (
-  $host       = $avamar::params::host,
-  $domain     = $avamar::params::domain,
-  $version    = $avamar::params::version,
-  $local_dir  = $avamar::params::local_dir
-) inherits avamar::params {
-
-  class {'avamar::install':}
-  -> class {'avamar::register':}
+    $host       = undef,
+    $domain     = 'clients',
+    $version    = '6.1.100-402',
+    $local_dir  = ''
+) {
+  class {'avamar::params':
+    host      => $host,
+    domain    => $domain,
+    version   => $version,
+    local_dir => $local_dir,
+  } ->
+  class {'avamar::install':
+  } -> 
+  class {'avamar::register':
+  }
   
   
 }
