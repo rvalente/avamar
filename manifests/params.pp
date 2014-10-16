@@ -13,13 +13,13 @@ class avamar::params (
   $host,
   $domain,
   $version,
+  $local_dir,
 ) {
   
 
   $pkg_dir    = '/usr/local/src'
   $avagent    = '/usr/local/avamar/etc/avagent.d'
   $base       = 'AvamarClient'
-  $local_dir  = ''
 
 
   case $::osfamily {
