@@ -13,7 +13,7 @@ class avamar::register inherits avamar::params {
   case $::osfamily {
     Windows: {
       exec { 'register':
-        command     => "cd \"${pkg_path}\"; .\\avregister.bat \"${host}\" \"${domain}\";",
+        command     => "cd \"${avamar::params::pkg_path}\"; .\\avregister.bat \"${avamar::params::host}\" \"${avamar::params::domain}\";",
         # TODO: check if we can use cwd => "${pkg_path}"
         refreshonly => true,
         subscribe   => Class['avamar::install'],
@@ -29,9 +29,9 @@ class avamar::register inherits avamar::params {
     }
     default: {
       exec { 'register':
-        command     => "$avagent register $host $domain",
+        command     => "$avamar::params::avagent register $avamar::params::host $avamar::params::domain",
         path        => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin", "/usr/local/sbin" ],
-        onlyif      => "test `$avagent status | grep -c $host` -ne 1",
+        onlyif      => "test `$avamar::params::avagent status | grep -c $avamar::params::host` -ne 1",
         refreshonly => true,
         subscribe   => Class['avamar::install'],
         before      => Service['avagent'],

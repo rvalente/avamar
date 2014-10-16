@@ -13,15 +13,11 @@ class avamar (
   $host       = $avamar::params::host,
   $domain     = $avamar::params::domain,
   $version    = $avamar::params::version,
-  $pkg_dir    = $avamar::params::pkg_dir,
-  $avagent    = $avamar::params::avagent,
-  $base       = $avamar::params::base,
   $local_dir  = $avamar::params::local_dir
 ) inherits avamar::params {
-  # TODO: check if anchor is really needed (a long as we install the agent before registering...)
-  include avamar::install, avamar::register
-  anchor{'avamar::begin':} 
-  -> Class['avamar::install']
-  -> Class['avamar::register']
-  -> anchor{'avamar::end':}
+
+  class {'avamar::install':}
+  -> class {'avamar::register':}
+  
+  
 }
