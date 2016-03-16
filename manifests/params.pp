@@ -21,7 +21,7 @@ class avamar::params (
   $base       = 'AvamarClient'
 
   case $::osfamily {
-    RedHat: {
+    'RedHat': {
       $provider = 'rpm'
       $type     = 'rpm'
       case $::lsbmajdistrelease {
@@ -55,7 +55,7 @@ class avamar::params (
         }
       }
     }
-    Suse: {
+    'Suse': {
       $provider = 'rpm'
       $type     = 'rpm'
       case $::lsbmajdistrelease {
@@ -89,7 +89,7 @@ class avamar::params (
         }         
       }
     }
-    Solaris: {
+    'Solaris': {
       $provider = 'sun'
       $type     = 'pkg'
       case $::architecture {
@@ -103,7 +103,7 @@ class avamar::params (
         }
       }
     }
-    Debian: {
+    'Debian': {
       $provider = 'dpkg'
       $pkg_name = 'avamarclient-debian'
       $type     = 'deb'
@@ -118,7 +118,7 @@ class avamar::params (
         }
       }
     }
-    Windows: {
+    'Windows': {
       $provider = 'windows'
       $type     = 'msi'
       $pkg_name = "EMC Avamar for Windows"
