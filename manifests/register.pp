@@ -11,16 +11,16 @@
 class avamar::register inherits avamar::params {
 
   case $::osfamily {
-    Windows: {
+    'Windows': {
       exec { 'register':
         command     => "cd \"${avamar::params::pkg_path}\"; .\\avregister.bat \"${avamar::params::host}\" \"${avamar::params::domain}\";",
         refreshonly => true,
         subscribe   => Class['avamar::install'],
-        provider    => "powershell",
-      } ->
-      service { 'avbackup':
-        enable     => true,
+        provider    => 'powershell',
+      }
+      -> service { 'avbackup':
         ensure     => running,
+        enable     => true,
         hasrestart => true,
         hasstatus  => true,
         require    => Class['avamar::install'],
@@ -28,17 +28,17 @@ class avamar::register inherits avamar::params {
     }
     default: {
       exec { 'register':
-        command     => "$avamar::params::avagent register $avamar::params::host $avamar::params::domain",
-        path        => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin", "/usr/local/sbin" ],
-        onlyif      => "test `$avamar::params::avagent status | grep -c $avamar::params::host` -ne 1",
+        command     => "${avamar::params::avagent} register ${avamar::params::host} ${avamar::params::domain}",
+        path        => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/', '/usr/local/bin', '/usr/local/sbin' ],
+        onlyif      => "test `${avamar::params::avagent} status | grep -c ${avamar::params::host}` -ne 1",
         refreshonly => true,
         subscribe   => Class['avamar::install'],
         before      => Service['avagent'],
       }
 
       service { 'avagent':
-        enable     => true,
         ensure     => running,
+        enable     => true,
         hasrestart => true,
         hasstatus  => true,
         require    => Class['avamar::install'],
