@@ -10,19 +10,19 @@
 # Copyright 2103 Ronald Valente
 #
 class avamar (
-    $host       = undef,
-    $domain     = 'clients',
-    $version    = '6.1.100-402',
-    $local_dir  = ''
+  $host       = undef,
+  $domain     = 'clients',
+  $version    = '6.1.100-402',
+  $local_dir  = undef
 ) {
-  class {'avamar::params':
+  class {'::avamar::params':
     host      => $host,
     domain    => $domain,
     version   => $version,
     local_dir => $local_dir,
-  } ->
-  class {'avamar::install':
-  } -> 
-  class {'avamar::register':
+  }
+  -> class {'::avamar::install':
+  }
+  -> class {'::avamar::register':
   }
 }
