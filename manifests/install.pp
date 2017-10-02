@@ -9,7 +9,7 @@
 #
 class avamar::install inherits avamar::params {
 
-  if($avamar::params::local_dir == ''){
+  if($avamar::params::local_dir == undef){
     include ::wget
     $base_url  = "https://${avamar::params::host}"
     $pkg_url   = "${base_url}${avamar::params::pkg_loc}"
