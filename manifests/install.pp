@@ -26,10 +26,11 @@ class avamar::install inherits avamar::params {
     }
 
     package { $avamar::params::pkg_name:
-      ensure   => installed,
-      provider => $avamar::params::provider,
-      source   => "${avamar::params::pkg_dir}/${avamar::params::pkg}",
-      require  => Wget::Fetch['avamar_pkg'],
+      ensure          => installed,
+      provider        => $avamar::params::provider,
+      source          => "${avamar::params::pkg_dir}/${avamar::params::pkg}",
+      install_options => $avamar::params::install_options,
+      require         => Wget::Fetch['avamar_pkg'],
     }
   }
   else {

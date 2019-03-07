@@ -23,6 +23,7 @@ class avamar::params (
   case $::osfamily {
     'RedHat': {
       $provider = 'rpm'
+      $install_options = '-U'
       $type     = 'rpm'
       case $::lsbmajdistrelease {
         /(4|5)/: {
@@ -62,6 +63,7 @@ class avamar::params (
     }
     'Suse': {
       $provider = 'rpm'
+      $install_options = undef
       $type     = 'rpm'
       case $::lsbmajdistrelease {
         '10':{
@@ -96,6 +98,7 @@ class avamar::params (
     }
     'Solaris': {
       $provider = 'sun'
+      $install_options = undef
       $type     = 'pkg'
       case $::architecture {
         'i386': {
@@ -110,6 +113,7 @@ class avamar::params (
     }
     'Debian': {
       $provider = 'dpkg'
+      $install_options = undef
       $pkg_name = 'avamarclient-debian'
       $type     = 'deb'
       case $::architecture {
@@ -125,6 +129,7 @@ class avamar::params (
     }
     'Windows': {
       $provider = 'windows'
+      $install_options = undef
       $type     = 'msi'
       $pkg_name = 'EMC Avamar for Windows'
       case $::architecture {
