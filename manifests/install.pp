@@ -9,15 +9,15 @@
 #
 class avamar::install inherits avamar::params {
 
-  if($avamar::params::local_dir == ''){
-    include wget
+  if($avamar::params::local_dir == undef){
+    include ::wget
     $base_url  = "https://${avamar::params::host}"
     $pkg_url   = "${base_url}${avamar::params::pkg_loc}"
     # Hostname must be a string
-    validate_string($host)
+    validate_string($avamar::params::host)
 
-    wget::fetch { "avamar_pkg":
-      source             => "$pkg_url",
+    wget::fetch { 'avamar_pkg':
+      source             => $pkg_url,
       destination        => "${avamar::params::pkg_dir}/${avamar::params::pkg}",
       timeout            => 0,
       verbose            => false,
@@ -26,15 +26,17 @@ class avamar::install inherits avamar::params {
     }
 
     package { $avamar::params::pkg_name:
-      provider => $avamar::params::provider,
-      ensure   => installed,
-      source   => "${avamar::params::pkg_dir}/${avamar::params::pkg}",
-      require  => Wget::Fetch["avamar_pkg"],
+      ensure          => installed,
+      provider        => $avamar::params::provider,
+      source          => "${avamar::params::pkg_dir}/${avamar::params::pkg}",
+      install_options => $avamar::params::install_options,
+      require         => Wget::Fetch['avamar_pkg'],
     }
-  }else{
-      package { $avamar::params::pkg_name:
-      ensure   => installed,
-      source   => "$avamar::params::local_dir",
+  }
+  else {
+    package { $avamar::params::pkg_name:
+      ensure          => installed,
+      source          => $avamar::params::local_dir,
       install_options => ['/qn'],
     }
   }
